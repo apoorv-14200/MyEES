@@ -5,7 +5,7 @@ import history from "./history";
 
 const render = async (location: any) => {
   document.title = "EES";
-  console.log("LOCATION", location);
+  if (location.location) location = location.location;
   const element = await router.resolve(location);
   ReactDOM.render(element, document.getElementById("root"));
 };

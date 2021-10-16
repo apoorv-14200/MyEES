@@ -6,8 +6,6 @@ import App from "../App";
 const waitAuth: ResolveRoute = async ({ next }) => {
   // Here will be the authorization process
   const child = await next();
-  // history.push("/admin");
-  console.log("In auth file", child);
   return <App>{child}</App>;
 };
 

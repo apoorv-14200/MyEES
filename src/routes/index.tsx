@@ -27,16 +27,6 @@ const routes: Array<Route> = [
     action: waitAuth,
     children: [
       {
-        path: "",
-        action: requireRole("none"),
-        children: [
-          {
-            path: "",
-            action: paramsAction(HeaderMenu),
-          },
-        ],
-      },
-      {
         path: "/admin",
         action: requireRole("admin"),
         children: [
@@ -44,10 +34,10 @@ const routes: Array<Route> = [
             path: "",
             action: paramsAction(HeaderMenu),
             children: [
-              // {
-              //   path: "",
-              //   action: redirectMiddleware("admin/home"),
-              // },
+              {
+                path: "",
+                action: redirectMiddleware("admin/home"),
+              },
               {
                 path: "/home",
                 action: paramsAction(HomePage),
@@ -66,6 +56,16 @@ const routes: Array<Route> = [
               //   //   action: action
               //   // },
             ],
+          },
+        ],
+      },
+      {
+        path: "",
+        action: requireRole("none"),
+        children: [
+          {
+            path: "",
+            action: paramsAction(HeaderMenu),
           },
         ],
       },

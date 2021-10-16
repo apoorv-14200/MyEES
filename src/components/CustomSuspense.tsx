@@ -40,28 +40,27 @@ const CustomSuspense: FC<CustomSuspenseProps> = ({
 }) => {
   const [showFallback, setShowFallback] = useState(!enableDelay);
   console.log("in custom suspense", children);
-  return <div>I am daksh</div>;
-  // return (
-  //   <ErrorBoundary>
-  //     <Suspense
-  //       fallback={
-  //         <FallbackWrapper
-  //           onMount={() => {
-  //             if (!enableDelay) return;
-  //             setShowFallback(false);
-  //             setTimeout(() => {
-  //               setShowFallback(true);
-  //             }, fallbackDelay);
-  //           }}
-  //         >
-  //           {showFallback && fallback}
-  //         </FallbackWrapper>
-  //       }
-  //     >
-  //       I AM DAKSH
-  //     </Suspense>
-  //   </ErrorBoundary>
-  // );
+  return (
+    <ErrorBoundary>
+      <Suspense
+        fallback={
+          <FallbackWrapper
+            onMount={() => {
+              if (!enableDelay) return;
+              setShowFallback(false);
+              setTimeout(() => {
+                setShowFallback(true);
+              }, fallbackDelay);
+            }}
+          >
+            {showFallback && fallback}
+          </FallbackWrapper>
+        }
+      >
+        {children}
+      </Suspense>
+    </ErrorBoundary>
+  );
 };
 
 export default CustomSuspense;
