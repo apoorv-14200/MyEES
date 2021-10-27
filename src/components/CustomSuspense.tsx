@@ -1,6 +1,7 @@
 // import { Spin } from 'antd';
 import React, { FC, Suspense, useEffect, useState } from "react";
 import ErrorBoundary from "./ErrorBoundary";
+import { Spin, Space } from "antd";
 
 const SHOW_FALLBACK_DELAY = 500;
 
@@ -21,15 +22,10 @@ const FallbackWrapper: FC<{
 };
 
 const defaultFallback = (
-  <div
-    style={{
-      width: "100%",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    }}
-  >
-    LOADING
+  <div className="loading">
+    <Space size="middle">
+      <Spin size="large" />
+    </Space>
   </div>
 );
 const CustomSuspense: FC<CustomSuspenseProps> = ({

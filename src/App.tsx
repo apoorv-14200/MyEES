@@ -6,8 +6,7 @@ const App: FC = ({ children }) => {
   console.log("in app file", children);
   return (
     <>
-      <p>in app file</p>
-      <div style={{ height: "100vh", width: "100wh" }}>
+      <div style={{ height: "fit-content", width: "100%" }}>
         <CustomSuspense>{children}</CustomSuspense>
       </div>
     </>

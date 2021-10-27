@@ -1,19 +1,14 @@
 import React, { Suspense, FC } from "react";
+import { Spin, Space } from "antd";
 
 const SuspenseLoader: FC = ({ children }) => {
   return (
     <Suspense
       fallback={
-        <div
-          style={{
-            display: "flex",
-            height: "100%",
-            width: "100%",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          LOADING
+        <div className="loading">
+          <Space size="middle">
+            <Spin size="large" />
+          </Space>
         </div>
       }
     >

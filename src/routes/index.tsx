@@ -6,10 +6,12 @@ import redirectMiddleware from "./redirectMiddleware";
 import requireRole from "./requireRole";
 import waitAuth from "./waitAuth";
 
-const HeaderMenu = React.lazy(() => import("../views/HeaderMenu"));
+const HeaderMenu = React.lazy(() => import("../views/Layout"));
 const HomePage = React.lazy(() => import("../views/HomePage"));
+const FeedPosts = React.lazy(() => import("../views/newFeedPost"));
 
 const paramsAction = (Component: FC<any>) => {
+  console.log("inside params action", Component);
   const action: ResolveRoute = async ({ next, ...context }, params) => {
     const children = await next();
     return (
@@ -36,25 +38,16 @@ const routes: Array<Route> = [
             children: [
               {
                 path: "",
-                action: redirectMiddleware("admin/home"),
+                action: redirectMiddleware("/admin/home"),
               },
               {
                 path: "/home",
                 action: paramsAction(HomePage),
               },
-              //   // Some more example for children.
-              //   // {
-              //   //   path: "",
-              //   //   action: action
-              //   // },
-              //   // {
-              //   //   path: "",
-              //   //   action: action
-              //   // },
-              //   // {
-              //   //   path: "",
-              //   //   action: action
-              //   // },
+              {
+                path: "/posts",
+                action: paramsAction(FeedPosts),
+              },
             ],
           },
         ],
